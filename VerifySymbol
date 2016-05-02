@@ -1,0 +1,83 @@
+package models;
+
+public class VerifySymbol{
+
+	public static final int NUMBER_CHAR = 48;
+	
+	public int counterSymbol(String cadena, char symbolUser){
+		int counter = 0;
+		for (int i = 0; i < cadena.length(); i++) {
+			if (symbolUser == cadena.charAt(i)) {
+				counter++;
+			}
+		}
+		return counter;
+	}
+
+	public String verifyBinary(String numberUser){
+		String answer = " "; 
+		char numberOne = '1';
+		char numberZero = '0';
+		for (int i = 0; i < numberUser.length(); i++) {
+			if (numberOne == numberUser.charAt(i) || numberZero == numberUser.charAt(i)) {
+				answer = "Correcto";
+			}else{
+				answer = "Incorrecto";
+				break;
+			}
+		}
+		return answer;
+	} 
+
+	public int getNumberWord(String phrase){
+		int counter = 1;
+		char character = ' ';
+		for (int i = 0; i < phrase.length(); i++) {
+			if(character == phrase.charAt(i))
+				counter++;
+		}
+		return counter;
+	}
+
+	public int getTwoPointsV(String phrase){
+		int counter = 0;	
+		char characterOne = ':';
+		char characterTwo = 'v';
+		for(int i = 1, j = 2; i < phrase.length(); i++, j++) {
+	   		if(characterOne == phrase.charAt(i) && characterTwo == phrase.charAt(j)){
+				counter++;
+			}
+		}
+		return counter;
+	}
+
+	public int addNumber(String phrase){
+		int addCounter = 0;
+		for (int i = 0; i < phrase.length(); i++) {
+			if (phrase.charAt(i) >= 48 && phrase.charAt(i) <= 57) {
+				addCounter += phrase.charAt(i) - NUMBER_CHAR;
+			}
+		}
+		return addCounter;
+	}
+
+	public int getHiguerNumber(String phrase){
+		int higuerNumber = 0;
+		for (int i = 0; i < phrase.length(); i += 2 ) {
+			if (phrase.charAt(i) - NUMBER_CHAR > higuerNumber) {
+				higuerNumber = phrase.charAt(i) - NUMBER_CHAR;
+			}
+		}
+		return higuerNumber;
+	}
+
+	public static void main(String[] args) {
+		VerifySymbol ss = new VerifySymbol();
+		System.out.println("El numero de veces que se repite es: " + ss.counterSymbol("Hoola", 'o'));
+		System.out.println("El numero binario es: " + ss.verifyBinary("0100411"));
+		System.out.println("El numero de veces que esta :v es: " + ss.getTwoPointsV("Hola :v :v :v:vv: mundo vvv"));
+		System.out.println("El numero de palabras es: " + ss.getNumberWord("Yo soy tu padre"));
+		System.out.println("La suma total es: " + ss.addNumber("a1b2c3d4f"));
+		System.out.println("El numero mayor es: " + ss.getHiguerNumber("1,2,4,1,5,1"));	
+	}
+}
