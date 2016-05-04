@@ -3,46 +3,38 @@ package models;
 public class ToolKit{
 
 	public static final int NUMBER_CHAR = 48;
+	public static final int NUMBER_INITIAL = 0;
+	public static final int CHAR_POINT = 46;
+	public static final int CHAR_SYMBOL = 44;
 	private int distanceTotal;
 
-	public void getBestStudent(String student){
-		int nameStudent = 0;
-		for (int i = 0; i < student.length(); i++ ) {
-			if (Character.isLetter(student.charAt(i)) && student.charAt(i) != 44) {
-				nameStudent = student.length(i);
-			}else if (Character.isNumber(student.charAt(i))) {
-				System.out.println(0);
-			}
-		}
-		System.out.println(nameStudent);
-	}
 
-	public void street(String hole){
-		int maxHole = 0;
-		int counter = 0;	
-		for (int i = 0; i < hole.length(); i++) {
-			int totalHole = 0;
-			if (hole.charAt(i) == 46) {
+	public int getHoleStreet(String hole){
+		int maxHole = NUMBER_INITIAL;
+		int counter = NUMBER_INITIAL;	
+		for (int i = NUMBER_INITIAL; i < hole.length(); i++) {
+			int totalHole = NUMBER_INITIAL;
+			if (hole.charAt(i) == CHAR_POINT) {
 				counter ++;
 				totalHole += counter;
 			}else{
-				counter = 0;
+				counter = NUMBER_INITIAL;
 			}
 			if (maxHole < totalHole) {
 				maxHole = totalHole;
 			}
 		}
-		System.out.println("Maximo de huecos seguidos es: " + maxHole);
+		return maxHole;
 	}
 
 	public int getSumNumber(String number){
-		int totalScore = 0;
+		int totalScore = NUMBER_INITIAL;
 		for (int i = 0; i < number.length(); i += 2 ) {
-			int partialScore = 0;
+			int partialScore = NUMBER_INITIAL;
 			if (number.charAt(i) >= 48 && number.charAt(i) <= 57){
-				partialScore += number.charAt(i) - 48;
-			}else if (number.charAt(i) == 46) {
-				partialScore = 0;
+				partialScore += number.charAt(i) - NUMBER_CHAR;
+			}else if (number.charAt(i) == CHAR_SYMBOL) {
+				partialScore = NUMBER_INITIAL;
 			}
 			totalScore += partialScore;
 		}
@@ -51,8 +43,7 @@ public class ToolKit{
 
 	public static void main(String[] args) {
 		ToolKit ss = new ToolKit();
-		ss.street("_._...._.-_..-...:-...");
-		ss.getBestStudent("hola123");
+		System.out.println(ss.getHoleStreet("_._...._.-_..-...:-..."));
 		System.out.println(ss.getSumNumber("2,1,5"));
 
 	}
