@@ -27,23 +27,26 @@ public class ToolKit{
 		return maxHole;
 	}
 
-	public int getSumNumber(String number){
+	public String getSumNumber(String number){
 		int totalScore = NUMBER_INITIAL;
+		String phrase = "";
+		int partialScore = NUMBER_INITIAL;
 		for (int i = 0; i < number.length(); i += 2 ) {
-			int partialScore = NUMBER_INITIAL;
 			if (number.charAt(i) >= 48 && number.charAt(i) <= 57){
+				phrase += number.charAt(i);
 				partialScore += number.charAt(i) - NUMBER_CHAR;
 			}else if (number.charAt(i) == CHAR_SYMBOL) {
+				phrase = "";
 				partialScore = NUMBER_INITIAL;
 			}
 			totalScore += partialScore;
 		}
-		return totalScore;
+		return phrase;
 	}
 
 	public static void main(String[] args) {
 		ToolKit ss = new ToolKit();
-		System.out.println(ss.getHoleStreet("_._...._.-_..-...:-..."));
+		System.out.println("Maximo de huecos seguidos es: " + ss.getHoleStreet("_._...._.-_..-...:-..."));
 		System.out.println(ss.getSumNumber("2,1,5"));
 
 	}
