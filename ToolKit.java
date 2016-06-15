@@ -43,11 +43,40 @@ public class ToolKit{
 		}
 		return phrase;
 	}
+	
+		public String getBestStudent(String phrase){
+		String bestName = "";
+		int higuer = 0;
+		String grade = "";
+		String name = "";
+		boolean isName = true;
+		for (int i = 0; i < phrase.length() ; i++) {
+			char character = phrase.charAt(i);
+			if(isName && character != 44){
+				name += character;
+			}else if(character >= 48 && character <= 57){
+				grade += character;
+			}
+			if (character == ',') {
+				isName = false;
+			}else if (character == ';') {
+				isName = true;
+				int cast = Integer.parseInt(grade);
+				if (cast > higuer) {
+					bestName = name;
+					higuer = cast;
+				}
+				grade = "";
+				name = "";
+			}
+		}
+		return bestName;
+	}
 
 	public static void main(String[] args) {
 		ToolKit ss = new ToolKit();
 		System.out.println("Maximo de huecos seguidos es: " + ss.getHoleStreet("_._...._.-_..-...:-..."));
 		System.out.println(ss.getSumNumber("2,1,5"));
-
+		System.out.println(ss.getBestStudent("Diego, 48; Fabio, 34; jose, 21"));
 	}
 }
